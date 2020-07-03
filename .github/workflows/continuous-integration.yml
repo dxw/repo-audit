@@ -1,0 +1,40 @@
+name: CI
+
+on: pull_request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+    services:
+      postgres:
+        image: postgres:10.8
+        env:
+          POSTGRES_USER: test
+          POSTGRES_DB: postgres
+        ports:
+        - 5432:5432
+        # needed because the postgres container does not provide a healthcheck
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set Ruby version to use
+        run: |
+          echo "::set-env name=RUBY_VERSION::$(cat .ruby-version)"
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+      - name: Install dependencies
+        run: |
+          sudo apt-get install libpq-dev
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+      - name: Set up the test database
+        run: |
+          RAILS_ENV=test bundle exec rake db:setup
+      - name: Run the tests
+        run: |
+          bundle exec rake
+      - name: Brakeman action
+        uses: artplan1/brakeman-action@v1.2.1
