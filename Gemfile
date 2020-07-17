@@ -56,4 +56,6 @@ end
 group :test do
   gem "database_cleaner"
   gem "launchy"
+  gem "vcr"
+  gem "webmock"
 end

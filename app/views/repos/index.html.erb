@@ -1,0 +1,9 @@
+<% content_for(:title) { "Public repositories" } %>
+
+<h1>Public repositories</h1>
+
+<table>
+  <% @repos.each do |repo| %>
+    <tr><th scope="row"><%= repo.name %></th></tr>
+  <% end %>
+</table>

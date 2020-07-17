@@ -58,6 +58,10 @@ To manage sensitive environment variables:
 
 TODO: Where can people find the service and the different environments?
 
+## How to generate new VCR cassettes
+
+To generate new VCR cassettes, which requires making calls the GitHub API, you’ll need to provide a GitHub personal access token as `GITHUB_ACCESS_TOKEN` in `.env.test.local`.
+
 ## Source
 
 This repository was bootstrapped from

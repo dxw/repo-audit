@@ -1,0 +1,78 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.github.com/graphql
+    body:
+      encoding: UTF-8
+      string: '{"query":"    {\n      organization(login: \"dxw\") {\n        repositories(first:
+        100, orderBy: { field: NAME, direction: ASC }) {\n          nodes {\n            id\n            name\n          }\n          pageInfo
+        {\n            endCursor\n            startCursor\n          }\n        }\n      }\n    }\n"}'
+    headers:
+      Authorization:
+      - "<GITHUB_ACCESS_TOKEN>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.github.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 17 Jul 2020 14:15:38 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - GitHub.com
+      Status:
+      - 200 OK
+      Cache-Control:
+      - no-cache
+      X-Oauth-Scopes:
+      - public_repo
+      X-Accepted-Oauth-Scopes:
+      - repo
+      X-Github-Media-Type:
+      - github.v4; format=json
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4984'
+      X-Ratelimit-Reset:
+      - '1594997283'
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval,
+        X-GitHub-Media-Type, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding, Accept, X-Requested-With
+      X-Github-Request-Id:
+      - D343:6E24:4402FC6:5285C97:5F11B28A
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"organization":{"repositories":{"nodes":[{"id":"MDEwOlJlcG9zaXRvcnkyNzY4NDk1OTg=","name":".github"},{"id":"MDEwOlJlcG9zaXRvcnkxMTM5ODEzMDU=","name":"10000ft-scheduling-dashboard"},{"id":"MDEwOlJlcG9zaXRvcnkxMTc2MTM4OA==","name":"136-jquery-ajax-revised"},{"id":"MDEwOlJlcG9zaXRvcnkzNzMyMDc3Mg==","name":"2fa"},{"id":"MDEwOlJlcG9zaXRvcnkyNjM1ODYwNg==","name":"AccHack14"},{"id":"MDEwOlJlcG9zaXRvcnkzNjc1NDcyNg==","name":"acf"},{"id":"MDEwOlJlcG9zaXRvcnkyNjkzODk2ODI=","name":"advisories"},{"id":"MDEwOlJlcG9zaXRvcnkyMTIzMjY3ODI=","name":"affordable-housing-monitoring"},{"id":"MDEwOlJlcG9zaXRvcnkyMDM1NjAxMzc=","name":"affordable-housing-monitoring-prototype"},{"id":"MDEwOlJlcG9zaXRvcnkyMDgyMjc5MzM=","name":"ApplicationInsights-Ruby"},{"id":"MDEwOlJlcG9zaXRvcnkyMzkxNjU2MjM=","name":"archivist"},{"id":"MDEwOlJlcG9zaXRvcnkxOTM0ODcyNzE=","name":"array_enum"},{"id":"MDEwOlJlcG9zaXRvcnk1MDUyNTQwNw==","name":"assertions"},{"id":"MDEwOlJlcG9zaXRvcnkyMzQ5OTAz","name":"auto-join-groups"},{"id":"MDEwOlJlcG9zaXRvcnk4OTE2MTc=","name":"awesome-buttons-sass"},{"id":"MDEwOlJlcG9zaXRvcnkxMjEyNjM5Mzk=","name":"azure-activedirectory-library-for-ruby"},{"id":"MDEwOlJlcG9zaXRvcnkxOTg0Mjc2Nzk=","name":"azure-resource-manager-schemas"},{"id":"MDEwOlJlcG9zaXRvcnkxOTcwMjk4ODQ=","name":"bat-platform-building-blocks"},{"id":"MDEwOlJlcG9zaXRvcnkxMjYyMzMyOTE=","name":"beanstalk-tools"},{"id":"MDEwOlJlcG9zaXRvcnk1OTAzMDg0OQ==","name":"beanstool"},{"id":"MDEwOlJlcG9zaXRvcnk1ODU2MzYxOQ==","name":"bernard"},{"id":"MDEwOlJlcG9zaXRvcnk1ODc0NjA4Nw==","name":"bernard-dashboard"},{"id":"MDEwOlJlcG9zaXRvcnkxODQ0MTYxNTc=","name":"bitnami-docker-discourse"},{"id":"MDEwOlJlcG9zaXRvcnkyMjQ4MjI3OTU=","name":"blog-rails-webpacker-govk-frontend"},{"id":"MDEwOlJlcG9zaXRvcnk1ODk0NDc0Mw==","name":"bouncer"},{"id":"MDEwOlJlcG9zaXRvcnkxODMzMzMw","name":"bp-export-users"},{"id":"MDEwOlJlcG9zaXRvcnkyNjg1ODI0NTQ=","name":"brand-rotator"},{"id":"MDEwOlJlcG9zaXRvcnkxMTQxMTg2MTk=","name":"brandbook"},{"id":"MDEwOlJlcG9zaXRvcnkyMTg5OTgyODU=","name":"breathe_ruby"},{"id":"MDEwOlJlcG9zaXRvcnk4OTkwMDU=","name":"browser-bugs"},{"id":"MDEwOlJlcG9zaXRvcnkxNjMwNzcy","name":"buddypress"},{"id":"MDEwOlJlcG9zaXRvcnk2ODgwMDIzNQ==","name":"campaigns"},{"id":"MDEwOlJlcG9zaXRvcnk3MzQyMDQ=","name":"capybara"},{"id":"MDEwOlJlcG9zaXRvcnkxOTg5OTYwNTg=","name":"check-rollbar-error-rate"},{"id":"MDEwOlJlcG9zaXRvcnkxNTA3NTYxMDU=","name":"child-page-permissions"},{"id":"MDEwOlJlcG9zaXRvcnkzNTYzNTc1Ng==","name":"cidr"},{"id":"MDEwOlJlcG9zaXRvcnkzMTY1NTkwOA==","name":"citrulu"},{"id":"MDEwOlJlcG9zaXRvcnk2NDQxMjMz","name":"citrulu-api-ruby"},{"id":"MDEwOlJlcG9zaXRvcnkyMDA2MjU5NjI=","name":"Co-Authors-Plus"},{"id":"MDEwOlJlcG9zaXRvcnkxOTk2NTY1NjQ=","name":"codeception-notify-module"},{"id":"MDEwOlJlcG9zaXRvcnkxMzkxNTg5Mzc=","name":"codeception-wordpress"},{"id":"MDEwOlJlcG9zaXRvcnkzODgwNjE3","name":"CodeMirror2"},{"id":"MDEwOlJlcG9zaXRvcnkyMDkxMDQ2NDc=","name":"collaboration-localgov"},{"id":"MDEwOlJlcG9zaXRvcnk1NTI3Nzc=","name":"commentplus"},{"id":"MDEwOlJlcG9zaXRvcnk3OTM4MDcyMA==","name":"contact-form-7-rate-limiting"},{"id":"MDEwOlJlcG9zaXRvcnk1MTM4NDUyNA==","name":"content-feedback"},{"id":"MDEwOlJlcG9zaXRvcnkxODE4NjE1MA==","name":"contracts"},{"id":"MDEwOlJlcG9zaXRvcnkyNTc2MDE0MjI=","name":"cookie-consent"},{"id":"MDEwOlJlcG9zaXRvcnkzNzgzNTE=","name":"cucumber-wordpress"},{"id":"MDEwOlJlcG9zaXRvcnkyNDYwMDc4NDc=","name":"dalmatian-developer-docs"},{"id":"MDEwOlJlcG9zaXRvcnkxMzYyMDkwNzA=","name":"DataSubmissionService"},{"id":"MDEwOlJlcG9zaXRvcnkxMzczNDU1NDQ=","name":"DataSubmissionServiceAPI"},{"id":"MDEwOlJlcG9zaXRvcnk2MjY0NjcxNg==","name":"date-polyfill"},{"id":"MDEwOlJlcG9zaXRvcnkxODE5NDYwMTQ=","name":"discourse"},{"id":"MDEwOlJlcG9zaXRvcnkxNzY1NjA4OTU=","name":"doberman"},{"id":"MDEwOlJlcG9zaXRvcnkxNTg4MTgyMDg=","name":"dolores-landingham-slack-bot"},{"id":"MDEwOlJlcG9zaXRvcnk0NzYyNzA2NQ==","name":"dxw-content-review"},{"id":"MDEwOlJlcG9zaXRvcnk3MDcxMTMxMw==","name":"dxw-deactivated-users"},{"id":"MDEwOlJlcG9zaXRvcnkxOTY1NjEwODU=","name":"dxw-dns"},{"id":"MDEwOlJlcG9zaXRvcnkzNTYzNTQ4Ng==","name":"dxw-members-only"},{"id":"MDEwOlJlcG9zaXRvcnkyMDUzMDMzNA==","name":"dxw-security-wp-plugin"},{"id":"MDEwOlJlcG9zaXRvcnkxNzY0ODg3MjI=","name":"dxw-tinyproxy"},{"id":"MDEwOlJlcG9zaXRvcnkxNTE1NzQyMjE=","name":"dxw-utils"},{"id":"MDEwOlJlcG9zaXRvcnkxNzcxMjQ1MTI=","name":"dxw_govuk_frontend_rails"},{"id":"MDEwOlJlcG9zaXRvcnkyNTEzODgwMzA=","name":"Edit-Flow"},{"id":"MDEwOlJlcG9zaXRvcnkxMTQ3Njk5NDg=","name":"ElasticPress"},{"id":"MDEwOlJlcG9zaXRvcnkxNDQzMDA0Njc=","name":"elasticpress-embargo-attachments"},{"id":"MDEwOlJlcG9zaXRvcnkyNzg2OTAzMjI=","name":"eslint-config"},{"id":"MDEwOlJlcG9zaXRvcnk0Mjc4MDA=","name":"Fammel"},{"id":"MDEwOlJlcG9zaXRvcnkxMzMwMzQ1MDE=","name":"fed-worksim-short"},{"id":"MDEwOlJlcG9zaXRvcnk1NDM4NTU3OA==","name":"figaro"},{"id":"MDEwOlJlcG9zaXRvcnk3MDk2NTI=","name":"forecast-outturns"},{"id":"MDEwOlJlcG9zaXRvcnk3NjI2Nzg5Mw==","name":"fourth-wall-for-gitlab"},{"id":"MDEwOlJlcG9zaXRvcnkxMzgyOTMxMzc=","name":"foxhound"},{"id":"MDEwOlJlcG9zaXRvcnkxODE4NDA4MDQ=","name":"geocoder"},{"id":"MDEwOlJlcG9zaXRvcnk2NjAzOTg=","name":"geshi"},{"id":"MDEwOlJlcG9zaXRvcnk0Mzc0NTI4Mw==","name":"gilded_rose_kata"},{"id":"MDEwOlJlcG9zaXRvcnkzNzU0MTc2Mw==","name":"git-env"},{"id":"MDEwOlJlcG9zaXRvcnkyNzc2MDgzMDM=","name":"git-get"},{"id":"MDEwOlJlcG9zaXRvcnk1NTgyNTU=","name":"glaexp"},{"id":"MDEwOlJlcG9zaXRvcnk1NTk0OTk=","name":"glaexp-data"},{"id":"MDEwOlJlcG9zaXRvcnkyNjk2OTk1NzY=","name":"glossary"},{"id":"MDEwOlJlcG9zaXRvcnkxNzU4MDAzNTg=","name":"golden_retriever"},{"id":"MDEwOlJlcG9zaXRvcnkxNjA3MjQ3OA==","name":"google-analytics-rails"},{"id":"MDEwOlJlcG9zaXRvcnkxNzU4MDg1OTE=","name":"gov-prototype-kit-sandbox"},{"id":"MDEwOlJlcG9zaXRvcnkxNTI4NjQyNg==","name":"government.github.com"},{"id":"MDEwOlJlcG9zaXRvcnkzMTcyMDIzOA==","name":"govsite"},{"id":"MDEwOlJlcG9zaXRvcnkxMDIxNjU2MQ==","name":"govuk-blogs"},{"id":"MDEwOlJlcG9zaXRvcnkyMjU0MTQyNTM=","name":"govuk_design_system_formbuilder"},{"id":"MDEwOlJlcG9zaXRvcnkxNzgzMDUwMQ==","name":"govuk_template"},{"id":"MDEwOlJlcG9zaXRvcnkyMTI4MzA2OTg=","name":"green-cost-explorer"},{"id":"MDEwOlJlcG9zaXRvcnk5MDA1NTExMA==","name":"griddler"},{"id":"MDEwOlJlcG9zaXRvcnkyNTY0NzI2Nw==","name":"grunt-environment"},{"id":"MDEwOlJlcG9zaXRvcnkxNjk3NDI4MTE=","name":"grunt-fingerprint"},{"id":"MDEwOlJlcG9zaXRvcnkxOTg2NTM0OTM=","name":"grunt-standard"},{"id":"MDEwOlJlcG9zaXRvcnkxNzM3NjU3NzQ=","name":"hackney-tenant-alexa-skill"},{"id":"MDEwOlJlcG9zaXRvcnk0MzY4ODI=","name":"haml-spec"},{"id":"MDEwOlJlcG9zaXRvcnkxMTI1NjUzNw==","name":"harvester"},{"id":"MDEwOlJlcG9zaXRvcnkxOTE4OTY0ODM=","name":"historic-marketplace-data"},{"id":"MDEwOlJlcG9zaXRvcnkyNzE1NTA0MDg=","name":"homebrew-tap"}],"pageInfo":{"endCursor":"Y3Vyc29yOnYyOpKsaG9tZWJyZXctdGFwzhAvh8g=","startCursor":"Y3Vyc29yOnYyOpKnLmdpdGh1Ys4QgGO-"}}}}}'
+  recorded_at: Fri, 17 Jul 2020 14:15:38 GMT
+recorded_with: VCR 6.0.0
