@@ -1,12 +1,12 @@
 RSpec.describe Repo do
   describe ".all" do
-    it "returns the first 100 public repos, in ascending name order" do
+    it "returns all public repos, in ascending name order" do
       VCR.use_cassette("repos") do
         repos = Repo.all
 
-        expect(repos.length).to eq(100)
+        expect(repos.length).to eq(238)
         expect(repos.first.name).to eq(".github")
-        expect(repos.last.name).to eq("homebrew-tap")
+        expect(repos.last.name).to eq("zendesk_to_airtable")
       end
     end
   end
