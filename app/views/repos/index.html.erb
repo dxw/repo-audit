@@ -3,7 +3,16 @@
 <h1>Public repositories</h1>
 
 <table>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Has contributing guidelines</th>
+    <th scope="col">Has code of conduct</th>
+  </tr>
   <% @repos.each do |repo| %>
-    <tr><th scope="row"><%= repo.name %></th></tr>
+    <tr>
+      <th scope="row"><%= repo.name %></th>
+      <td><%= repo.has_contributing_guidelines? ? "Yes" : "No" %></td>
+      <td><%= repo.has_code_of_conduct? ? "Yes" : "No" %></td>
+    </tr>
   <% end %>
 </table>

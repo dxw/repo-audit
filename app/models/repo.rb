@@ -1,4 +1,33 @@
-Repo = Struct.new(:id, :name) {
+class Repo
+  attr_reader :json
+
+  def initialize(json)
+    @json = json
+  end
+
+  def name
+    json["name"]
+  end
+
+  def has_contributing_guidelines?
+    default_branch_has_file?("CONTRIBUTING.md")
+  end
+
+  def has_code_of_conduct?
+    default_branch_has_file?("CODE_OF_CONDUCT.md")
+  end
+
+  private
+
+  def default_branch_has_file?(name)
+    !!default_branch_tree_entry_names&.include?(name)
+  end
+
+  def default_branch_tree_entry_names
+    json.dig("defaultBranchRef", "target", "tree", "entries")
+      &.map { |entry| entry["name"] }
+  end
+
   class << self
     def all
       repos = []
@@ -8,7 +37,7 @@ Repo = Struct.new(:id, :name) {
         connection = load_repositories_connection(after: after)
 
         repos += connection["nodes"].map { |repo_json|
-          new(repo_json["id"], repo_json["name"])
+          new(repo_json)
         }
 
         page_info = connection["pageInfo"]
@@ -40,6 +69,17 @@ Repo = Struct.new(:id, :name) {
           nodes {
             id
             name
+            defaultBranchRef {
+              target {
+                ... on Commit {
+                  tree {
+                    entries {
+                      name
+                    }
+                  }
+                }
+              }
+            }
           }
           pageInfo {
             hasNextPage
@@ -51,4 +91,4 @@ Repo = Struct.new(:id, :name) {
       GRAPHQL
     end
   end
-}
+end

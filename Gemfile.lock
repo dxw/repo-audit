@@ -88,6 +88,10 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
+    capybara_table (0.2.1)
+      capybara (>= 2.0)
+      terminal-table
+      xpath (>= 2.1)
     childprocess (3.0.0)
     chromedriver-helper (2.1.1)
       archive-zip (~> 0.10)
@@ -283,6 +287,8 @@ GEM
       rubocop (~> 0.77.0)
       rubocop-performance (~> 1.5.1)
     temple (0.8.2)
+    terminal-table (1.8.0)
+      unicode-display_width (~> 1.1, >= 1.1.1)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -323,6 +329,7 @@ DEPENDENCIES
   bullet
   byebug
   capybara (>= 2.15)
+  capybara_table
   chromedriver-helper
   coffee-rails (~> 5.0)
   database_cleaner
