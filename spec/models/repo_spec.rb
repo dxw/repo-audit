@@ -4,7 +4,7 @@ RSpec.describe Repo do
       VCR.use_cassette("repos") do
         repos = Repo.all
 
-        expect(repos.length).to eq(238)
+        expect(repos.length).to eq(239)
         expect(repos.first.name).to eq(".github")
         expect(repos.last.name).to eq("zendesk_to_airtable")
       end
