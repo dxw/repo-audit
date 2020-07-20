@@ -9,6 +9,10 @@ class Repo
     json["name"]
   end
 
+  def url
+    json["url"]
+  end
+
   def archived?
     json["isArchived"]
   end
@@ -77,6 +81,7 @@ class Repo
           nodes {
             id
             name
+            url
             isArchived
             defaultBranchRef {
               target {

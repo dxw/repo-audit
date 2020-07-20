@@ -12,7 +12,7 @@
   </tr>
   <% @repos.each do |repo| %>
     <tr>
-      <th scope="row"><%= repo.name %></th>
+      <th scope="row"><%= link_to(repo.name, repo.url) %></th>
       <td><%= repo.has_contributing_guidelines? ? "Yes" : "No" %></td>
       <td><%= repo.has_code_of_conduct? ? "Yes" : "No" %></td>
     </tr>
