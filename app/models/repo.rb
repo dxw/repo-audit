@@ -9,6 +9,10 @@ class Repo
     json["name"]
   end
 
+  def archived?
+    json["isArchived"]
+  end
+
   def has_contributing_guidelines?
     default_branch_has_file?("CONTRIBUTING.md")
   end
@@ -48,6 +52,10 @@ class Repo
       repos
     end
 
+    def non_archived
+      all.reject(&:archived?)
+    end
+
     def load_repositories_connection(after:)
       query = graphql_query(after: after)
       body = JSON.dump(query: query)
@@ -69,6 +77,7 @@ class Repo
           nodes {
             id
             name
+            isArchived
             defaultBranchRef {
               target {
                 ... on Commit {
