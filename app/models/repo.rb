@@ -60,6 +60,8 @@ class Repo
       all.reject(&:archived?)
     end
 
+    private
+
     def load_repositories_connection(after:)
       query = graphql_query(after: after)
       body = JSON.dump(query: query)

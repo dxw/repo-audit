@@ -9,12 +9,14 @@
     <th scope="col">Name</th>
     <th scope="col">Has contributing guidelines</th>
     <th scope="col">Has code of conduct</th>
+    <th scope="col">Actions</th>
   </tr>
   <% @repos.each do |repo| %>
     <tr>
       <th scope="row"><%= link_to(repo.name, repo.url) %></th>
       <td><%= repo.has_contributing_guidelines? ? "Yes" : "No" %></td>
       <td><%= repo.has_code_of_conduct? ? "Yes" : "No" %></td>
+      <td><%= link_to("Create pull request", repo_pull_requests_path(repo.name), method: :post) %></td>
     </tr>
   <% end %>
 </table>
