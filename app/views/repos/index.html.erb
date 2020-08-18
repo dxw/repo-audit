@@ -14,8 +14,8 @@
   <% @repos.each do |repo| %>
     <tr>
       <th scope="row"><%= link_to(repo.name, repo.url) %></th>
-      <td><%= repo.has_contributing_guidelines? ? "Yes" : "No" %></td>
-      <td><%= repo.has_code_of_conduct? ? "Yes" : "No" %></td>
+      <td class="<%= repo.has_contributing_guidelines? %>"><%= boolean_to_string(repo.has_contributing_guidelines?) %></td>
+      <td class="<%= repo.has_code_of_conduct? %>"><%= boolean_to_string(repo.has_code_of_conduct?) %></td>
       <td>
         <% if repo.has_contributing_pr? %>
           <%= link_to("View existing pull request", repo.contributing_pr_link) %>
