@@ -25,6 +25,14 @@ class Repo
     default_branch_has_file?("CODE_OF_CONDUCT.md")
   end
 
+  def has_contributing_pr?
+    existing_contributing_pull_requests.present?
+  end
+
+  def contributing_pr_link
+    existing_contributing_pull_requests.last.html_url
+  end
+
   private
 
   def default_branch_has_file?(name)
@@ -34,6 +42,14 @@ class Repo
   def default_branch_tree_entry_names
     json.dig("defaultBranchRef", "target", "tree", "entries")
       &.map { |entry| entry["name"] }
+  end
+
+  def existing_contributing_pull_requests
+    client.pull_requests("dxw/#{name}", head: "dxw:#{PullRequestCreator::BRANCH_NAME}")
+  end
+
+  def client
+    @client ||= Octokit::Client.new(access_token: ENV["GITHUB_ACCESS_TOKEN"])
   end
 
   class << self
