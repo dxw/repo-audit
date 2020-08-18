@@ -1,9 +1,9 @@
-RSpec.describe PullRequest do
+RSpec.describe PullRequestCreator do
   describe ".create" do
     context "when contributing guidelines and code of conduct are absent" do
-      it "creates a branch, taking the files from the .github repository, and opens a pull request" do
+      it "creates a branch and opens a pull request" do
         pull_request = VCR.use_cassette("create_pull_request") {
-          PullRequest.create("repo-audit-test")
+          PullRequestCreator.new("repo-audit-test").open_pull_request
         }
 
         expected_commit_message = <<~MESSAGE
