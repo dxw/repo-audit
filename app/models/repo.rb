@@ -33,6 +33,10 @@ class Repo
     existing_contributing_pull_requests.last.html_url
   end
 
+  def needs_action?
+    !has_contributing_pr? && !(has_code_of_conduct? && has_contributing_guidelines?)
+  end
+
   private
 
   def default_branch_has_file?(name)
