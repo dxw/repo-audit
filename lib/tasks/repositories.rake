@@ -13,8 +13,9 @@ namespace :repo do
 
       repos_needing_action += 1
       pull_request = PullRequestCreator.new(repo.name).open_pull_request unless dry_run
+      puts "Created pull request #{pull_request.inspect}"
       opened_prs += 1
-    rescue StandardError => e
+    rescue => e
       logger.error("Error creating pull request on #{repo.name}: #{e.messages}")
     end
 

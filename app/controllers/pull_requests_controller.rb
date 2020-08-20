@@ -5,7 +5,7 @@ class PullRequestsController < ApplicationController
     logger.info("Created pull request #{pull_request.inspect}")
 
     flash[:info] = "Created pull request #{pull_request.inspect}"
-  rescue StandardError => e
+  rescue => e
     # TODO remove?
     logger.error("Error creating pull request: #{e.messages}")
 
