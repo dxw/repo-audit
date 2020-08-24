@@ -13,10 +13,11 @@ namespace :repo do
 
       repos_needing_action += 1
       pull_request = PullRequestCreator.new(repo.name).open_pull_request unless dry_run
-      puts "Created pull request #{pull_request.inspect}"
+      puts "Created pull request #{pull_request&.html_url}"
       opened_prs += 1
     rescue => e
-      logger.error("Error creating pull request on #{repo.name}: #{e.messages}")
+      puts "Error! #{e.message} on #{repo.html_url}"
+      Rails.logger.error("Error creating pull request on #{repo.name}: #{e.message}")
     end
 
     puts "Found #{repos_needing_action} repos needing action."
