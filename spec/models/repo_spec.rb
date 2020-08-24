@@ -5,7 +5,7 @@ RSpec.describe Repo do
     it "returns all public repos, in ascending name order" do
       repos = Repo.all
 
-      expect(repos.length).to eq(239)
+      expect(repos.length).to eq(247)
       expect(repos.first.name).to eq(".github")
       expect(repos.last.name).to eq("zendesk_to_airtable")
     end
@@ -15,7 +15,7 @@ RSpec.describe Repo do
     it "returns all public repos, in ascending name order, excluding archived repos" do
       repos = Repo.non_archived
 
-      expect(repos.length).to eq(159)
+      expect(repos.length).to eq(152)
       expect(repos.first.name).to eq(".github")
       expect(repos.last.name).to eq("zendesk_to_airtable")
 
@@ -37,7 +37,7 @@ RSpec.describe Repo do
     end
 
     it "returns false when the repository has no default branch" do
-      repo = Repo.all.find { |repo| repo.name == "dxw-deactivated-users" }
+      repo = Repo.all.find { |repo| repo.name == "terraform-aws-ecs-logspout-logstash" }
 
       expect(repo.has_contributing_guidelines?).to eq(false)
     end
@@ -57,7 +57,7 @@ RSpec.describe Repo do
     end
 
     it "returns false when the repository has no default branch" do
-      repo = Repo.all.find { |repo| repo.name == "dxw-deactivated-users" }
+      repo = Repo.all.find { |repo| repo.name == "terraform-aws-ecs-logspout-logstash" }
 
       expect(repo.has_code_of_conduct?).to eq(false)
     end

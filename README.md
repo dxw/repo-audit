@@ -1,6 +1,8 @@
 # dxw repo audit
 
-TODO: Add a summary of who the application is for and what it will do.
+An application for checking and facilitating adherence to the dxw standard contributing guidelines across all of dxw's repositories.
+
+Lists all non-archived repos, checks for the existence of a CODE_OF_CONDUCT.md and a CONTRIBUTING.md, and allows opening a pull request on the target repository to add any of those files if they're missing.
 
 ## Getting started
 
@@ -12,7 +14,9 @@ TODO: Add getting started steps
 
 ## Running the tests
 
-TODO: Add testing instructions
+```bash
+bundle exec rspec
+```
 
 ## Running Brakeman
 
@@ -56,7 +60,7 @@ To manage sensitive environment variables:
 
 ## Access
 
-TODO: Where can people find the service and the different environments?
+Currently this application is not deployed anywhere.
 
 ## How to generate new VCR cassettes
 

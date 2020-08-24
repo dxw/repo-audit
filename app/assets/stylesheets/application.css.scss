@@ -13,3 +13,72 @@
  *= require_tree .
  *= require_self
  */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&display=swap");
+
+$font-family-serif: "Cardo", -apple-system, serif;
+$font-family-sans-serif: "Poppins", sans-serif;
+
+$navy-dark: #17212c;
+$navy: #243746;
+$cream: #f3f1e9;
+$ivory: #f9f8f5;
+
+$grey: #bdbdbd;
+$grey-light: #efefec;
+
+$yellow: #ff9e18;
+$yellow-mid: #ffb259;
+$yellow-light: #fcd672;
+$orange: #ff5c35;
+$orange-mid: #ff8d6b;
+$orange-light: #ffa489;
+$red: #ff595a;
+$red-mid: #ff8189;
+$red-light: #ffb1b9;
+$purple: #69488e;
+$purple-mid: #7473c0;
+$purple-light: #a7a4df;
+$teal: #09615d;
+$teal-mid: #009490;
+$teal-light: #80c7bc;
+$blue: #004876;
+$blue-mid: #009abf;
+$blue-light: #73c3d5;
+
+body {
+  font-family: $font-family-serif;
+  background-color: $ivory;
+  color: $navy;
+}
+
+h1,
+th {
+  font-family: $font-family-sans-serif;
+  font-weight: 600;
+}
+
+tr {
+  padding-top: 0.2em;
+}
+
+a {
+  color: $blue;
+}
+
+a:visited {
+  color: $purple;
+}
+
+a:hover {
+  color: $orange;
+}
+
+.false {
+  color: $red;
+}
+
+.true {
+  color: $teal;
+}
