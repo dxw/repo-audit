@@ -6,7 +6,7 @@ namespace :repo do
     opened_prs = 0
 
     repos = Repo.non_archived
-    puts "Total #{repos.size}"
+    puts "Total non-archived public repos #{repos.size}"
 
     repos.each do |repo|
       next unless repo.needs_action?
