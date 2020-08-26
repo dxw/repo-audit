@@ -1,5 +1,17 @@
+include GithubStubRequests
+
 feature "Viewing a list of public repos" do
+  let(:fake_github_client) { double(:client) }
+  let(:fake_permission) { double(:permission, permission: permission_level) }
+  let(:permission_level) { "write" }
+
   around(:each) { |example| VCR.use_cassette("repos", record: :new_episodes, &example) }
+
+  before do
+    stub_github_client
+    stub_pull_requests
+    stub_permission_check
+  end
 
   scenario "The user views the first page of public, non-archived repos" do
     visit root_path

@@ -1,4 +1,14 @@
 RSpec.describe Repo do
+  include GithubStubRequests
+
+  let(:fake_github_client) { double(:client) }
+  let(:repo) { Repo.all.find { |repo| repo.name == ".github" } }
+
+  before do
+    stub_github_client
+    stub_pull_requests
+  end
+
   around(:each) { |example| VCR.use_cassette("repos", &example) }
 
   describe ".all" do
@@ -74,6 +84,87 @@ RSpec.describe Repo do
       repo = Repo.all.find { |repo| repo.name == "team-dashboard" }
 
       expect(repo.archived?).to eq(false)
+    end
+  end
+
+  describe "#has_contributing_pr?" do
+    it "looks for an open pull request for a specific branch name" do
+      expect(fake_github_client).to receive(:pull_requests)
+        .with("dxw/.github", head: "dxw:#{PullRequestCreator::BRANCH_NAME}")
+
+      repo.has_contributing_pr?
+    end
+
+    it "is false" do
+      expect(repo.has_contributing_pr?).to be_falsey
+    end
+
+    context "when there is an open PR to add contributing documentation" do
+      before do
+        stub_pull_requests([double(:pull_request)])
+      end
+
+      it "is true" do
+        expect(repo.has_contributing_pr?).to be_truthy
+      end
+    end
+  end
+
+  describe "#contributing_pr_link" do
+    let(:pr) { double(:pull_request, url: "https://api.github.com/etc", html_url: "https://github.com/etc") }
+
+    it "is the public URL of the existing PR" do
+      stub_pull_requests([pr])
+
+      expect(repo.contributing_pr_link).to match("https://github.com/")
+    end
+  end
+
+  describe "#needs_action?" do
+    it "is false if there is already an open contributing PR" do
+      stub_pull_requests([double(:pull_request)])
+
+      expect(repo.needs_action?).to be_falsey
+    end
+
+    it "is false if the repo already has the full contributing documentation" do
+      expect(repo.needs_action?).to be_falsey
+    end
+  end
+
+  describe "#can_be_written_to?" do
+    let(:fake_permission) { double(:permission, permission: permission_level) }
+
+    context "when the service account doesn't have write permissions on the repo" do
+      let(:permission_level) { "read" }
+      before do
+        stub_permission_check
+      end
+
+      it "is false" do
+        expect(repo.can_be_written_to?).to be_falsey
+      end
+    end
+
+    context "when the service account doesn't have push access to the repo" do
+      before do
+        stub_permission_forbidden
+      end
+
+      it "is false" do
+        expect(repo.can_be_written_to?).to be_falsey
+      end
+    end
+
+    context "when the service account has write permissions on the repo" do
+      let(:permission_level) { "write" }
+      before do
+        stub_permission_check
+      end
+
+      it "is true" do
+        expect(repo.can_be_written_to?).to be_truthy
+      end
     end
   end
 end
