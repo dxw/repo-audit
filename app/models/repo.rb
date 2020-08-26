@@ -13,10 +13,6 @@ class Repo
     json["url"]
   end
 
-  def html_url
-    json["html_url"]
-  end
-
   def archived?
     json["isArchived"]
   end
