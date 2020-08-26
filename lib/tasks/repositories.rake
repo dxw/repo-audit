@@ -12,7 +12,7 @@ namespace :repo do
       next unless repo.needs_action?
 
       repos_needing_action += 1
-      if !repo.can_be_written_to?
+      unless repo.can_be_written_to?
         puts "Manual action needed: dxw-rails-user cannot open a pull request for #{repo.name}."
         next
       end
