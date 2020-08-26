@@ -19,8 +19,13 @@
       <td>
         <% if repo.has_contributing_pr? %>
           <%= link_to("View existing pull request", repo.contributing_pr_link) %>
-        <% else %>
-          <%= link_to("Create pull request", repo_pull_requests_path(repo.name), method: :post) %>
+        <% elsif repo.needs_action? %>
+          <% if repo.can_be_written_to? %>
+            <%= link_to("Create pull request", repo_pull_requests_path(repo.name), method: :post) %>
+          <% else %>
+            Manual action neeeded: dxw-rails-user has no write permissions
+            <%= " (fork)" if repo.fork? %>
+          <% end %>
         <% end %>
       </td>
     </tr>
