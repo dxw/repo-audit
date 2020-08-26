@@ -41,6 +41,15 @@ class Repo
     !has_contributing_pr? && !(has_code_of_conduct? && has_contributing_guidelines?)
   end
 
+  def can_be_written_to?(username: "dxw-rails-user")
+    permission_string = begin
+                          client.permission_level("dxw/#{name}", username).permission
+                        rescue Octokit::Forbidden => _e
+                          "none"
+                        end
+    %w[admin write].include?(permission_string)
+  end
+
   private
 
   def default_branch_has_file?(name)
