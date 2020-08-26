@@ -21,6 +21,10 @@ class Repo
     json["isArchived"]
   end
 
+  def fork?
+    json["isFork"]
+  end
+
   def has_contributing_guidelines?
     default_branch_has_file?("CONTRIBUTING.md")
   end
@@ -109,6 +113,7 @@ class Repo
             name
             url
             isArchived
+            isFork
             defaultBranchRef {
               target {
                 ... on Commit {
