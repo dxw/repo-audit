@@ -103,7 +103,7 @@ class Repo
       <<-GRAPHQL
     {
       organization(login: "dxw") {
-        repositories(first: 100, orderBy: { field: NAME, direction: ASC }#{", after: \"#{after}\"" if after}) {
+        repositories(privacy: PUBLIC, first: 100, orderBy: { field: NAME, direction: ASC }#{", after: \"#{after}\"" if after}) {
           nodes {
             id
             name
