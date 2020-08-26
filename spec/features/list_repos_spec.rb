@@ -1,6 +1,6 @@
-include GithubStubRequests
-
 feature "Viewing a list of public repos" do
+  include GithubStubRequests
+
   let(:fake_github_client) { double(:client) }
   let(:fake_permission) { double(:permission, permission: permission_level) }
   let(:permission_level) { "write" }
