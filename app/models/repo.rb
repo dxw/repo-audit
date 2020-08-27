@@ -17,6 +17,10 @@ class Repo
     json["isArchived"]
   end
 
+  def fork?
+    json["isFork"]
+  end
+
   def has_contributing_guidelines?
     default_branch_has_file?("CONTRIBUTING.md")
   end
@@ -35,6 +39,15 @@ class Repo
 
   def needs_action?
     !has_contributing_pr? && !(has_code_of_conduct? && has_contributing_guidelines?)
+  end
+
+  def can_be_written_to?(username: "dxw-rails-user")
+    permission_string = begin
+                          client.permission_level("dxw/#{name}", username).permission
+                        rescue Octokit::Forbidden => _e
+                          "none"
+                        end
+    %w[admin write].include?(permission_string)
   end
 
   private
@@ -99,12 +112,13 @@ class Repo
       <<-GRAPHQL
     {
       organization(login: "dxw") {
-        repositories(first: 100, orderBy: { field: NAME, direction: ASC }#{", after: \"#{after}\"" if after}) {
+        repositories(privacy: PUBLIC, first: 100, orderBy: { field: NAME, direction: ASC }#{", after: \"#{after}\"" if after}) {
           nodes {
             id
             name
             url
             isArchived
+            isFork
             defaultBranchRef {
               target {
                 ... on Commit {
