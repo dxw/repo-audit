@@ -19,12 +19,7 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
       - uses: actions/checkout@v1
-      - name: Set Ruby version to use
-        run: |
-          echo "::set-env name=RUBY_VERSION::$(cat .ruby-version)"
       - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: ${{ env.RUBY_VERSION }}
       - name: Install dependencies
         run: |
           sudo apt-get install libpq-dev
