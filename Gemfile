@@ -16,7 +16,7 @@ gem "mini_racer"
 gem "octokit", "~> 4"
 gem "puma", "~> 4.1"
 gem "rollbar"
-gem "rails", "~> 6.0.0"
+gem "rails", "~> 6.0"
 gem "sass-rails", "~> 6.0"
 gem "turbolinks", "~> 5"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
